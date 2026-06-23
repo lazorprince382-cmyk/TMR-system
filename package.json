@@ -1,0 +1,23 @@
+{
+  "name": "training-management-reporting-system",
+  "version": "1.0.0",
+  "description": "Training management, attendance and automated reporting platform",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/preview-server.js",
+    "server": "node src/server.js",
+    "db:setup": "node src/setup.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "dotenv": "^16.5.0",
+    "exceljs": "^4.4.0",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "pdfkit": "^0.17.1",
+    "pg": "^8.16.0"
+  }
+}
