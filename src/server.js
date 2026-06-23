@@ -7,6 +7,7 @@ const bcrypt = require('bcryptjs');
 const ExcelJS = require('exceljs');
 const PDFDocument = require('pdfkit');
 const db = require('./db');
+const { ensureDatabase } = require('./bootstrap');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -85,4 +86,9 @@ app.get('/api/reports/:type/export.:format',auth,asyncRoute(async(req,res)=>{con
 
 app.get('/{*splat}',(req,res)=>res.sendFile(path.join(__dirname,'../public/index.html')));
 app.use((err,req,res,next)=>{console.error(err);res.status(err.code==='23505'?409:500).json({error:err.code==='23505'?'That record already exists.':'Something went wrong. Please try again.'})});
-app.listen(PORT,()=>console.log(`TMR System running at http://localhost:${PORT}`));
+ensureDatabase()
+  .then(() => app.listen(PORT,()=>console.log(`TMR System running at http://localhost:${PORT}`)))
+  .catch(err => {
+    console.error('Database setup failed:', err);
+    process.exit(1);
+  });
