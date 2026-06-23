@@ -5,8 +5,9 @@
   "main": "src/server.js",
   "scripts": {
     "dev": "node --watch src/server.js",
-    "start": "node src/preview-server.js",
+    "start": "node src/server.js",
     "server": "node src/server.js",
+    "preview": "node src/preview-server.js",
     "db:setup": "node src/setup.js",
     "test": "node --test"
   },
