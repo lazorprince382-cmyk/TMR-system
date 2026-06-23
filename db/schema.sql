@@ -26,6 +26,8 @@ CREATE TABLE IF NOT EXISTS learners (
   email VARCHAR(180),
   phone VARCHAR(40),
   photo_url TEXT,
+  address TEXT,
+  health_status VARCHAR(120),
   guardian_name VARCHAR(120),
   guardian_phone VARCHAR(40),
   joined_on DATE NOT NULL DEFAULT CURRENT_DATE,
@@ -33,6 +35,8 @@ CREATE TABLE IF NOT EXISTS learners (
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 ALTER TABLE learners ADD COLUMN IF NOT EXISTS photo_url TEXT;
+ALTER TABLE learners ADD COLUMN IF NOT EXISTS address TEXT;
+ALTER TABLE learners ADD COLUMN IF NOT EXISTS health_status VARCHAR(120);
 
 CREATE TABLE IF NOT EXISTS programs (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
